@@ -1,0 +1,37 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.regForm{
+    width: 50%;
+    margin: 0 auto;
+}
+.center.aligned.editHeader{
+    margin-bottom: 0 !important;
+    margin-top: 50px !important;
+    font-size: x-large;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+.ui.form .field .regInput{
+    margin-bottom: 10px;
+}
+#specify{
+margin-top: 10px;
+}
+.ui.button.registerBtn{
+    margin-top: 20px;
+}
+.requiredField{
+    color: red;
+}
+
+/* Flash MSG */
+.flashSize{
+    width: 400px;
+}
+.flashMsg .centerAlign .message{
+    margin: 0 auto;
+}
+.centerAlign{
+    margin: 10px auto;
+}
