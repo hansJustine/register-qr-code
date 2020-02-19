@@ -46,7 +46,7 @@
                         <label for="mi">Your Middle Initial</label>
                         <input type="text" placeholder="Middle Initial" name="mi" class="regInput">
                         <label for="contactNum">Your Contact Number<span class="requiredField">*</span></label>
-                        <input type="number" placeholder="+63" name="contactNum" class="regInput" required>
+                        <input type="number" placeholder="+63" name="contactNum" min="0" maxlength="12" minlength="12" class="regInput" required>
                         <label for="email">Your Email<span class="requiredField">*</span></label>
                         <input type="email" placeholder="youremail@email.com" name="email" class="regInput" required>
                         <label for="inviterRelationship">Your relationship to who invited you</label>
