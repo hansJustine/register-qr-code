@@ -1,5 +1,9 @@
-body{
+
+    body{
     font-family: 'Montserrat', sans-serif;
+    background-image: url('landscape.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 .regForm{
     width: 50%;
@@ -11,6 +15,9 @@ body{
     font-size: x-large;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
+}
+.field {
+	font-size: medium;
 }
 .ui.form .field .regInput{
     margin-bottom: 10px;
@@ -35,3 +42,5 @@ margin-top: 10px;
 .centerAlign{
     margin: 10px auto;
 }
+
+
