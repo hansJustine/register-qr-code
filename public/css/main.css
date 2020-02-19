@@ -1,7 +1,7 @@
 
     body{
     font-family: 'Montserrat', sans-serif;
-    background-image: url('landscape.jpg');
+    background-image: url('https://images.unsplash.com/photo-1565361284531-1c72d91b291b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1767&q=80');
     background-repeat: no-repeat;
     background-size: 100%;
 }
