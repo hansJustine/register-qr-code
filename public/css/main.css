@@ -1,9 +1,12 @@
-
-    body{
+body{
     font-family: 'Montserrat', sans-serif;
-
-
-
+    background-image: url('../landscape.jpg');
+    background-size: cover;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    height: 100vh;
 }
 .regForm{
     width: 50%;
@@ -42,5 +45,3 @@ margin-top: 10px;
 .centerAlign{
     margin: 10px auto;
 }
-
-
