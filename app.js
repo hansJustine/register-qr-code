@@ -62,7 +62,7 @@ app.post('/register/qrcode', (req, res) => {
                             email: req.body.email,
                             contactNumber: req.body.contactNum,
                             relationshipToTheStudent: req.body.relationship,
-                            isUsed: false
+                            isUsed: true
                         });
                         qrcode.save()
                             .then(savedQr => { 

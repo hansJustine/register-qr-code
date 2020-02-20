@@ -11,4 +11,4 @@ const qrcodeSchema = new mongoose.Schema({
     isUsed: Boolean
 });
 
-module.exports = mongoose.model('Qrcode', qrcodeSchema);
+module.exports = mongoose.model('Guest', qrcodeSchema);
