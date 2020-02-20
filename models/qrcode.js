@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const qrcodeSchema = new mongoose.Schema({
-    code: {type: String, unique: true},
     firstName: String,
     surname: String,
     middleInitial: String,
