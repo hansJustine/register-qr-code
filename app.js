@@ -55,23 +55,7 @@ app.get('/', (req, res) => {
 })
 //Register QRCode 
 app.post('/register/qrcode', (req, res) => {
-    QrCodeModel.find()
-        .then(qrcodes => {
-            function ifEmailIsRegistered(){
-                for(var i = 0; i < qrcodes.length; i++){
-                    if(qrcodes[i].email == req.body.email){
-                        return true;
-                    }
-                }
-                return false;
-            }
-            console.log(ifEmailIsRegistered());
-            if(!ifEmailIsRegistered()){
-                var randomCode = randomize('aA0', 8, { exclude: '0oOiIlL1' });
-                QRCode.toDataURL(randomCode, opts)
-                    .then(url => {
                         var qrcode = new QrCodeModel({
-                            code: randomCode,
                             firstName: req.body.firstName,
                             surname: req.body.surname,
                             middleInitial: req.body.mi,
@@ -82,42 +66,79 @@ app.post('/register/qrcode', (req, res) => {
                         });
                         qrcode.save()
                             .then(savedQr => { 
-                                const mailOptions = {
-                                    from: process.env.EMAIL, // sender address
-                                    to: req.body.email, // list of receivers
-                                    subject: 'STI College Marikina Exposition', // Subject line
-                                    html: `<div><strong>Hello ${req.body.firstName}, Welcome To STI College Marikina 2020 Exposition!</strong></div> <div>This QR Code will be used to vote for your favorite booth.</div> <div>Enjoy your visit!</div>`, // plain text body
-                                    attachments: [
-                                        {
-                                            filename: `qr.jpg`,
-                                            content: url.split('base64,')[1],
-                                            encoding: 'base64'
-                                        }                
-                                    ]
-                                };
-                                transporter.sendMail(mailOptions, function (err, info) {
-                                    if(err){
-                                        console.log('Nodemailer:' + err)
-                                    }else{
-                                        req.flash('success', "You've successfully registered! Check your email to view your QR Code."); 
-                                        res.redirect('back')
-                                    }
-                                })
+                                req.flash('success', "You've successfully registered! Check your email to view your QR Code."); 
+                                res.redirect('back');
                             })
                             .catch(err => {
                                 req.flash('error', err.message);
                                 res.redirect('back');
                             });
-                    }).catch(err => console.log(err));
-            }else{
-                req.flash('error', 'The email is already registered.');
-                res.redirect('back');
-            }
-        }).catch(err => {
-            console.log(err)
-            res.redirect('back')
-        })
 });
+
+// app.post('/register/qrcode', (req, res) => {
+//     QrCodeModel.find()
+//         .then(qrcodes => {
+//             function ifEmailIsRegistered(){
+//                 for(var i = 0; i < qrcodes.length; i++){
+//                     if(qrcodes[i].email == req.body.email){
+//                         return true;
+//                     }
+//                 }
+//                 return false;
+//             }
+//             console.log(ifEmailIsRegistered());
+//             if(!ifEmailIsRegistered()){
+//                 var randomCode = randomize('aA0', 8, { exclude: '0oOiIlL1' });
+//                 QRCode.toDataURL(randomCode, opts)
+//                     .then(url => {
+//                         var qrcode = new QrCodeModel({
+//                             code: randomCode,
+//                             firstName: req.body.firstName,
+//                             surname: req.body.surname,
+//                             middleInitial: req.body.mi,
+//                             email: req.body.email,
+//                             contactNumber: req.body.contactNum,
+//                             relationshipToTheStudent: req.body.relationship,
+//                             isUsed: false
+//                         });
+//                         qrcode.save()
+//                             .then(savedQr => { 
+//                                 const mailOptions = {
+//                                     from: process.env.EMAIL, // sender address
+//                                     to: req.body.email, // list of receivers
+//                                     subject: 'STI College Marikina Exposition', // Subject line
+//                                     html: `<div><strong>Hello ${req.body.firstName}, Welcome To STI College Marikina 2020 Exposition!</strong></div> <div>This QR Code will be used to vote for your favorite booth.</div> <div>Enjoy your visit!</div>`, // plain text body
+//                                     attachments: [
+//                                         {
+//                                             filename: `qr.jpg`,
+//                                             content: url.split('base64,')[1],
+//                                             encoding: 'base64'
+//                                         }                
+//                                     ]
+//                                 };
+//                                 transporter.sendMail(mailOptions, function (err, info) {
+//                                     if(err){
+//                                         console.log('Nodemailer:' + err)
+//                                     }else{
+//                                         req.flash('success', "You've successfully registered! Check your email to view your QR Code."); 
+//                                         res.redirect('back')
+//                                     }
+//                                 })
+//                             })
+//                             .catch(err => {
+//                                 req.flash('error', err.message);
+//                                 res.redirect('back');
+//                             });
+//                     }).catch(err => console.log(err));
+//             }else{
+//                 req.flash('error', 'The email is already registered.');
+//                 res.redirect('back');
+//             }
+//         }).catch(err => {
+//             console.log(err)
+//             res.redirect('back')
+//         })
+// });
 
 app.get("*", (req, res) => {
     res.send("Error 404, Page Not Found")
